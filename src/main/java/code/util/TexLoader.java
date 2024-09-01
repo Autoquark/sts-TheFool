@@ -9,10 +9,10 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 
 import java.util.HashMap;
 
-import static code.ModFile.makeImagePath;
+import static code.TheFoolMod.makeImagePath;
 
 public class TexLoader {
-    private static HashMap<String, Texture> textures = new HashMap<>();
+    private static final HashMap<String, Texture> textures = new HashMap<>();
 
     /**
      * @param textureString - String path to the texture you want to load relative to resources,

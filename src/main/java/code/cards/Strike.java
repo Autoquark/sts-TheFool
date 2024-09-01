@@ -1,24 +1,32 @@
 package code.cards;
 
+import basemod.helpers.CardModifierManager;
+import code.cardmodifiers.ImpulsiveCardModifier;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static code.ModFile.makeID;
+import static code.TheFoolMod.makeID;
 
-public class Strike extends AbstractEasyCard {
+public class Strike extends AbstractEasyCard
+{
     public final static String ID = makeID("Strike");
     // intellij stuff attack, enemy, basic, 6, 3,  , , , 
 
-    public Strike() {
+    public Strike()
+    {
         super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
         baseDamage = 6;
         tags.add(CardTags.STRIKE);
         tags.add(CardTags.STARTER_STRIKE);
+
+        // TEMP
+        CardModifierManager.addModifier(this, new ImpulsiveCardModifier(true));
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.NONE);
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        applyDamage(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
     }
 
     @Override

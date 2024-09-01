@@ -9,16 +9,16 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import code.cards.AbstractEasyCard;
 import code.powers.LambdaPower;
 
-import static code.ModFile.makeID;
+import static code.TheFoolMod.makeID;
 import static code.util.Wiz.applyToSelf;
-import static code.util.Wiz.atb;
+import static code.util.Wiz.addToBottom;
 
 public class InlinePowerDemo extends AbstractEasyCard {
     public final static String ID = makeID(InlinePowerDemo.class.getSimpleName());
     // intellij stuff power, self, uncommon
 
     public InlinePowerDemo() {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardRarity.SPECIAL, CardTarget.SELF);
         baseMagicNumber = magicNumber = 4;
     }
 
@@ -35,7 +35,7 @@ public class InlinePowerDemo extends AbstractEasyCard {
             @Override
             public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
                 flash();
-                atb(new GainBlockAction(owner, amount));
+                addToBottom(new GainBlockAction(owner, amount));
             }
 
             @Override

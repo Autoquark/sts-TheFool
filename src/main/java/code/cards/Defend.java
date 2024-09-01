@@ -3,7 +3,7 @@ package code.cards;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static code.ModFile.makeID;
+import static code.TheFoolMod.makeID;
 
 public class Defend extends AbstractEasyCard {
     public final static String ID = makeID("Defend");
@@ -16,7 +16,7 @@ public class Defend extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        blck();
+        applyBlock();
     }
 
     @Override

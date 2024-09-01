@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.cards.tempCards.Smite;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static code.ModFile.makeID;
+import static code.TheFoolMod.makeID;
 import static code.util.Wiz.*;
 
 public class MultiCardPreviewAndDrawCallback extends AbstractEasyCard {
@@ -18,7 +18,7 @@ public class MultiCardPreviewAndDrawCallback extends AbstractEasyCard {
     // intellij stuff skill, self, uncommon, , , , , ,
 
     public MultiCardPreviewAndDrawCallback() {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY); // This card is a 1 cost Uncommon Attack that targets ALL enemies.
+        super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY); // This card is a 1 cost Uncommon Attack that targets ALL enemies.
         baseDamage = 10;
         MultiCardPreview.add(this, new Smite(), new Safety()); // Display both Smite and Safety when you hover this card.
         isMultiDamage = true;
@@ -31,7 +31,7 @@ public class MultiCardPreviewAndDrawCallback extends AbstractEasyCard {
         AbstractCard q2 = new Safety(); // Same for Safety.
         if (upgraded) q2.upgrade();
         shuffleIn(q2);
-        atb(new DrawCardAction(1, actionify(() -> { // Add an action that draws 1 card. As soon as that's done, add another action that...
+        addToBottom(new DrawCardAction(1, actionify(() -> { // Add an action that draws 1 card. As soon as that's done, add another action that...
             if (DrawCardAction.drawnCards.stream().anyMatch(c -> c.color.equals(CardColor.COLORLESS))) // checks if any cards drawn were colorless...
                 allDmgTop(AbstractGameAction.AttackEffect.SLASH_VERTICAL); // and if so deals the damage to ALL enemies.
         })));

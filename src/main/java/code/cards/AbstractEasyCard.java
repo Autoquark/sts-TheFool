@@ -1,6 +1,7 @@
 package code.cards;
 
 import basemod.abstracts.CustomCard;
+import code.util.Wiz;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,11 +17,11 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.function.Consumer;
-import code.CharacterFile;
+import code.TheFool;
 import code.util.CardArtRoller;
 
-import static code.ModFile.makeImagePath;
-import static code.ModFile.modID;
+import static code.TheFoolMod.makeImagePath;
+import static code.TheFoolMod.modID;
 import static code.util.Wiz.*;
 
 public abstract class AbstractEasyCard extends CustomCard {
@@ -50,7 +51,7 @@ public abstract class AbstractEasyCard extends CustomCard {
     private boolean needsArtRefresh = false;
 
     public AbstractEasyCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
-        this(cardID, cost, type, rarity, target, CharacterFile.Enums.TODO_COLOR);
+        this(cardID, cost, type, rarity, target, TheFool.Enums.COLOR_YELLOW);
     }
 
     public AbstractEasyCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
@@ -249,28 +250,28 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     // These shortcuts are specifically for cards. All other shortcuts that aren't specifically for cards can go in Wiz.
-    protected void dmg(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
-        atb(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
+    protected void applyDamage(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
+        addToBottom(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
     }
 
     protected void dmgTop(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
-        att(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
+        Wiz.addToTop(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
     }
 
     protected void allDmg(AbstractGameAction.AttackEffect fx) {
-        atb(new DamageAllEnemiesAction(AbstractDungeon.player, multiDamage, damageTypeForTurn, fx));
+        addToBottom(new DamageAllEnemiesAction(AbstractDungeon.player, multiDamage, damageTypeForTurn, fx));
     }
 
     protected void allDmgTop(AbstractGameAction.AttackEffect fx) {
-        att(new DamageAllEnemiesAction(AbstractDungeon.player, multiDamage, damageTypeForTurn, fx));
+        Wiz.addToTop(new DamageAllEnemiesAction(AbstractDungeon.player, multiDamage, damageTypeForTurn, fx));
     }
 
     protected void altDmg(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
-        atb(new DamageAction(m, new DamageInfo(AbstractDungeon.player, secondDamage, damageTypeForTurn), fx));
+        addToBottom(new DamageAction(m, new DamageInfo(AbstractDungeon.player, secondDamage, damageTypeForTurn), fx));
     }
 
     protected void altDmgTop(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
-        att(new DamageAction(m, new DamageInfo(AbstractDungeon.player, secondDamage, damageTypeForTurn), fx));
+        Wiz.addToTop(new DamageAction(m, new DamageInfo(AbstractDungeon.player, secondDamage, damageTypeForTurn), fx));
     }
 
     private AbstractGameAction dmgRandomAction(AbstractGameAction.AttackEffect fx, Consumer<AbstractMonster> extraEffectToTarget, Consumer<AbstractMonster> effectBefore) {
@@ -280,7 +281,7 @@ public abstract class AbstractEasyCard extends CustomCard {
                 calculateCardDamage(target);
                 if (extraEffectToTarget != null)
                     extraEffectToTarget.accept(target);
-                att(new DamageAction(target, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
+                Wiz.addToTop(new DamageAction(target, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
                 if (effectBefore != null)
                     effectBefore.accept(target);
             }
@@ -292,7 +293,7 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     protected void dmgRandom(AbstractGameAction.AttackEffect fx, Consumer<AbstractMonster> extraEffectToTarget, Consumer<AbstractMonster> effectBefore) {
-        atb(dmgRandomAction(fx, extraEffectToTarget, effectBefore));
+        addToBottom(dmgRandomAction(fx, extraEffectToTarget, effectBefore));
     }
 
     protected void dmgRandomTop(AbstractGameAction.AttackEffect fx) {
@@ -300,23 +301,23 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     protected void dmgRandomTop(AbstractGameAction.AttackEffect fx, Consumer<AbstractMonster> extraEffectToTarget, Consumer<AbstractMonster> effectBefore) {
-        att(dmgRandomAction(fx, extraEffectToTarget, effectBefore));
+        Wiz.addToTop(dmgRandomAction(fx, extraEffectToTarget, effectBefore));
     }
 
-    protected void blck() {
-        atb(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
+    protected void applyBlock() {
+        addToBottom(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
     }
 
     protected void blckTop() {
-        att(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
+        Wiz.addToTop(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
     }
 
     protected void altBlck() {
-        atb(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, secondBlock));
+        addToBottom(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, secondBlock));
     }
 
     protected void altBlckTop() {
-        att(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, secondBlock));
+        Wiz.addToTop(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, secondBlock));
     }
 
     public String cardArtCopy() {

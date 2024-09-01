@@ -1,8 +1,7 @@
 package code.util;
 
-import basemod.BaseMod;
 import basemod.patches.whatmod.WhatMod;
-import code.ModFile;
+import code.TheFoolMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,9 +31,9 @@ import static com.badlogic.gdx.graphics.GL20.GL_DST_COLOR;
 import static com.badlogic.gdx.graphics.GL20.GL_ZERO;
 
 public class CardArtRoller {
-    private static final Texture attackMask = TexLoader.getTexture(ModFile.makeImagePath("masks/AttackMask.png"));
-    private static final Texture skillMask = TexLoader.getTexture(ModFile.makeImagePath("masks/SkillMask.png"));
-    private static final Texture powerMask = TexLoader.getTexture(ModFile.makeImagePath("masks/PowerMask.png"));
+    private static final Texture attackMask = TexLoader.getTexture(TheFoolMod.makeImagePath("masks/AttackMask.png"));
+    private static final Texture skillMask = TexLoader.getTexture(TheFoolMod.makeImagePath("masks/SkillMask.png"));
+    private static final Texture powerMask = TexLoader.getTexture(TheFoolMod.makeImagePath("masks/PowerMask.png"));
 
     public static final String partialHueRodrigues =
             "vec3 applyHue(vec3 rgb, float hue)\n" +
@@ -151,32 +150,32 @@ public class CardArtRoller {
             "    gl_FragColor = vec4(newColor,color.a);\n" +
             "}";
 
-    private static HashMap<String, TextureAtlas.AtlasRegion> doneCards = new HashMap<>();
+    private static final HashMap<String, TextureAtlas.AtlasRegion> doneCards = new HashMap<>();
     public static HashMap<String, ReskinInfo> infos = new HashMap<>();
-    private static ShaderProgram shade = new ShaderProgram(vertexShaderHSLC, fragmentShaderHSLC);
-    private static ShaderProgram bicolorShader = new ShaderProgram(vertexBicolorShader,fragmentBicolorShader);
-    private static String[] strikes = {
+    private static final ShaderProgram shade = new ShaderProgram(vertexShaderHSLC, fragmentShaderHSLC);
+    private static final ShaderProgram bicolorShader = new ShaderProgram(vertexBicolorShader,fragmentBicolorShader);
+    private static final String[] strikes = {
             Strike_Red.ID,
             Strike_Blue.ID,
             Strike_Green.ID,
             Strike_Purple.ID
     };
-    private static String[] defends = {
+    private static final String[] defends = {
             Defend_Red.ID,
             Defend_Blue.ID,
             Defend_Green.ID,
             Defend_Watcher.ID
     };
-    private static ArrayList<String> possAttacks = new ArrayList<>();
-    private static ArrayList<String> openAttacks = new ArrayList<>();
-    private static ArrayList<String> doneAttacks = new ArrayList<>();
-    private static ArrayList<String> possSkills = new ArrayList<>();
-    private static ArrayList<String> openSkills = new ArrayList<>();
-    private static ArrayList<String> doneSkills = new ArrayList<>();
-    private static ArrayList<String> possPowers = new ArrayList<>();
-    private static ArrayList<String> openPowers = new ArrayList<>();
-    private static ArrayList<String> donePowers = new ArrayList<>();
-    private static CardLibrary.LibraryType[] basicColors = {
+    private static final ArrayList<String> possAttacks = new ArrayList<>();
+    private static final ArrayList<String> openAttacks = new ArrayList<>();
+    private static final ArrayList<String> doneAttacks = new ArrayList<>();
+    private static final ArrayList<String> possSkills = new ArrayList<>();
+    private static final ArrayList<String> openSkills = new ArrayList<>();
+    private static final ArrayList<String> doneSkills = new ArrayList<>();
+    private static final ArrayList<String> possPowers = new ArrayList<>();
+    private static final ArrayList<String> openPowers = new ArrayList<>();
+    private static final ArrayList<String> donePowers = new ArrayList<>();
+    private static final CardLibrary.LibraryType[] basicColors = {
             CardLibrary.LibraryType.RED,
             CardLibrary.LibraryType.GREEN,
             CardLibrary.LibraryType.BLUE,

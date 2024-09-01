@@ -4,6 +4,7 @@ import basemod.cardmods.EtherealMod;
 import basemod.cardmods.ExhaustMod;
 import basemod.helpers.CardModifierManager;
 import code.cards.AbstractEasyCard;
+import code.util.Wiz;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,7 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static code.ModFile.makeID;
+import static code.TheFoolMod.makeID;
 import static code.util.Wiz.*;
 
 public class SelectCardsPlusCardMods extends AbstractEasyCard {
@@ -21,8 +22,9 @@ public class SelectCardsPlusCardMods extends AbstractEasyCard {
     public final static String ID = makeID(SelectCardsPlusCardMods.class.getSimpleName());
     // intellij stuff skill, self, uncommon
 
-    public SelectCardsPlusCardMods() {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+    public SelectCardsPlusCardMods()
+    {
+        super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -34,8 +36,8 @@ public class SelectCardsPlusCardMods extends AbstractEasyCard {
             CardModifierManager.addModifier(eligibleCardsList.get(i), new ExhaustMod());
             myCardsList.add(eligibleCardsList.get(i));
         }
-        atb(new SelectCardsAction(myCardsList, 1, cardStrings.EXTENDED_DESCRIPTION[0], (cards) -> {
-            att(new MakeTempCardInHandAction(cards.get(0), 1, true));
+        addToBottom(new SelectCardsAction(myCardsList, 1, cardStrings.EXTENDED_DESCRIPTION[0], (cards) -> {
+            Wiz.addToTop(new MakeTempCardInHandAction(cards.get(0), 1, true));
         }));
     }
 

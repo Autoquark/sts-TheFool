@@ -5,6 +5,8 @@ import basemod.BaseMod;
 import basemod.abstracts.DynamicVariable;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import code.actions.SetIsInStartOfTurnDrawAction;
+import code.util.Wiz;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -20,12 +22,10 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import code.cards.AbstractEasyCard;
 import code.cards.cardvars.AbstractEasyDynamicVariable;
-import code.cards.cardvars.SecondDamage;
-import code.cards.cardvars.SecondMagicNumber;
 import code.potions.AbstractEasyPotion;
 import code.relics.AbstractEasyRelic;
 import code.util.ProAudio;
@@ -33,15 +33,18 @@ import java.nio.charset.StandardCharsets;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
-public class ModFile implements
+public class TheFoolMod implements
         EditCardsSubscriber,
         EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         EditCharactersSubscriber,
+        OnPlayerTurnStartSubscriber,
+        OnPlayerTurnStartPostDrawSubscriber,
+        OnStartBattleSubscriber,
         AddAudioSubscriber {
 
-    public static final String modID = "todomod"; //TODO: Change this.
+    public static final String modID = "TheFool"; //TODO: Change this.
 
     public static String makeID(String idText) {
         return modID + ":" + idText;
@@ -64,6 +67,18 @@ public class ModFile implements
     private static final String CHARSELECT_BUTTON = makeImagePath("charSelect/charButton.png");
     private static final String CHARSELECT_PORTRAIT = makeImagePath("charSelect/charBG.png");
 
+    private static boolean isInStartOfTurnDraw = false;
+
+    public static boolean getIsInStartOfTurnDraw()
+    {
+        return isInStartOfTurnDraw;
+    }
+
+    public static void setIsInStartOfTurnDraw(boolean value)
+    {
+        isInStartOfTurnDraw = value;
+    }
+
     public static Settings.GameLanguage[] SupportedLanguages = {
             Settings.GameLanguage.ENG,
     };
@@ -77,10 +92,10 @@ public class ModFile implements
         return "eng";
     }
 
-    public ModFile() {
+    public TheFoolMod() {
         BaseMod.subscribe(this);
 
-        BaseMod.addColor(CharacterFile.Enums.TODO_COLOR, characterColor, characterColor, characterColor,
+        BaseMod.addColor(TheFool.Enums.COLOR_YELLOW, characterColor, characterColor, characterColor,
                 characterColor, characterColor, characterColor, characterColor,
                 ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
                 ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
@@ -113,13 +128,13 @@ public class ModFile implements
     }
 
     public static void initialize() {
-        ModFile thismod = new ModFile();
+        TheFoolMod thismod = new TheFoolMod();
     }
 
     @Override
     public void receiveEditCharacters() {
-        BaseMod.addCharacter(new CharacterFile(CharacterFile.characterStrings.NAMES[1], CharacterFile.Enums.THE_TODO),
-            CHARSELECT_BUTTON, CHARSELECT_PORTRAIT, CharacterFile.Enums.THE_TODO);
+        BaseMod.addCharacter(new TheFool(TheFool.characterStrings.NAMES[1], TheFool.Enums.THE_FOOL),
+            CHARSELECT_BUTTON, CHARSELECT_PORTRAIT, TheFool.Enums.THE_FOOL);
         
         new AutoAdd(modID)
             .packageFilter(AbstractEasyPotion.class)
@@ -188,5 +203,24 @@ public class ModFile implements
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
+    }
+
+    @Override
+    public void receiveOnPlayerTurnStart()
+    {
+        Wiz.addToBottom(new SetIsInStartOfTurnDrawAction(true));
+    }
+
+    @Override
+    public void receiveOnPlayerTurnStartPostDraw()
+    {
+        Wiz.addToBottom(new SetIsInStartOfTurnDrawAction(false));
+    }
+
+    // Start of battle turn draw uses a different flow so we need this also
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom)
+    {
+        Wiz.addToBottom(new SetIsInStartOfTurnDrawAction(true));
     }
 }

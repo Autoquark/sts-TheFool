@@ -8,15 +8,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static code.ModFile.makeID;
-import static code.util.Wiz.atb;
+import static code.TheFoolMod.makeID;
+import static code.util.Wiz.addToBottom;
 
 public class StartupBlockCard extends AbstractEasyCard implements StartupCard { // This card implements StartupCard, an extra 'type' of card that adds the ability to trigger at the start of combat.
     public final static String ID = makeID(StartupBlockCard.class.getSimpleName());
     // intellij stuff skill, self, uncommon, , , , , ,
 
     public StartupBlockCard() {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY); // This card is a 1 cost Common Skill that targets an enemy.
+        super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY); // This card is a 1 cost Common Skill that targets an enemy.
         baseDamage = 7;
         baseMagicNumber = magicNumber = 4;
         isMultiDamage = true; // This card attacks ALL enemies, so isMultiDamage is true...
@@ -28,7 +28,7 @@ public class StartupBlockCard extends AbstractEasyCard implements StartupCard { 
 
     @Override
     public boolean atBattleStartPreDraw() {
-        atb(new GainBlockAction(AbstractDungeon.player, magicNumber)); // Since this isn't a card being played, we use a flat value (magicnumber) for the Block.
+        addToBottom(new GainBlockAction(AbstractDungeon.player, magicNumber)); // Since this isn't a card being played, we use a flat value (magicnumber) for the Block.
         return true; // The return value is if you want this card to show up pre-fight, to indicate the effect triggered. Since it always triggers, we always return true.
     }
 

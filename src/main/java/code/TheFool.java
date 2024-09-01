@@ -3,6 +3,10 @@ package code;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
+import basemod.interfaces.OnPlayerTurnStartSubscriber;
+import basemod.patches.com.megacrit.cardcrawl.characters.AbstractPlayer.TurnStartHooks;
+import code.cards.DiscardAndDraw;
+import code.cards.GainStrengthFromWeak;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
@@ -24,18 +28,19 @@ import code.relics.TodoItem;
 
 import java.util.ArrayList;
 
-import static code.CharacterFile.Enums.TODO_COLOR;
-import static code.ModFile.*;
+import static code.TheFool.Enums.COLOR_YELLOW;
+import static code.TheFoolMod.*;
 
-public class CharacterFile extends CustomPlayer {
+public class TheFool extends CustomPlayer
+{
 
     static final String ID = makeID("ModdedCharacter");
     static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     static final String[] NAMES = characterStrings.NAMES;
     static final String[] TEXT = characterStrings.TEXT;
 
-
-    public CharacterFile(String name, PlayerClass setClass) {
+    public TheFool(String name, PlayerClass setClass)
+    {
         super(name, setClass, new CustomEnergyOrb(orbTextures, makeCharacterPath("mainChar/orb/vfx.png"), null), new SpriterAnimation(
                 makeCharacterPath("mainChar/static.scml")));
         initializeClass(null,
@@ -50,32 +55,41 @@ public class CharacterFile extends CustomPlayer {
     }
 
     @Override
-    public CharSelectInfo getLoadout() {
+    public CharSelectInfo getLoadout()
+    {
         return new CharSelectInfo(NAMES[0], TEXT[0],
                 80, 80, 0, 99, 5, this, getStartingRelics(),
                 getStartingDeck(), false);
     }
 
     @Override
-    public ArrayList<String> getStartingDeck() {
+    public ArrayList<String> getStartingDeck()
+    {
         ArrayList<String> retVal = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++)
+        {
             retVal.add(Strike.ID);
         }
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++)
+        {
             retVal.add(Defend.ID);
         }
+
+        retVal.add(DiscardAndDraw.ID);
+
         return retVal;
     }
 
-    public ArrayList<String> getStartingRelics() {
+    public ArrayList<String> getStartingRelics()
+    {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(TodoItem.ID);
         return retVal;
     }
 
     @Override
-    public void doCharSelectScreenSelectEffect() {
+    public void doCharSelectScreenSelectEffect()
+    {
         CardCrawlGame.sound.playA("UNLOCK_PING", MathUtils.random(-0.2F, 0.2F));
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT,
                 false);
@@ -96,63 +110,75 @@ public class CharacterFile extends CustomPlayer {
     };
 
     @Override
-    public String getCustomModeCharacterButtonSoundKey() {
+    public String getCustomModeCharacterButtonSoundKey()
+    {
         return "UNLOCK_PING";
     }
 
     @Override
-    public int getAscensionMaxHPLoss() {
+    public int getAscensionMaxHPLoss()
+    {
         return 8;
     }
 
     @Override
-    public AbstractCard.CardColor getCardColor() {
-        return TODO_COLOR;
+    public AbstractCard.CardColor getCardColor()
+    {
+        return COLOR_YELLOW;
     }
 
     @Override
-    public Color getCardTrailColor() {
+    public Color getCardTrailColor()
+    {
         return characterColor.cpy();
     }
 
     @Override
-    public BitmapFont getEnergyNumFont() {
+    public BitmapFont getEnergyNumFont()
+    {
         return FontHelper.energyNumFontRed;
     }
 
     @Override
-    public String getLocalizedCharacterName() {
+    public String getLocalizedCharacterName()
+    {
         return NAMES[0];
     }
 
     @Override
-    public AbstractCard getStartCardForEvent() {
+    public AbstractCard getStartCardForEvent()
+    {
         System.out.println("YOU NEED TO SET getStartCardForEvent() in your " + getClass().getSimpleName() + " file!");
         return null;
     }
 
     @Override
-    public String getTitle(AbstractPlayer.PlayerClass playerClass) {
+    public String getTitle(AbstractPlayer.PlayerClass playerClass)
+    {
         return NAMES[1];
     }
 
     @Override
-    public AbstractPlayer newInstance() {
-        return new CharacterFile(name, chosenClass);
+    public AbstractPlayer newInstance()
+    {
+        return new TheFool(name, chosenClass);
     }
 
     @Override
-    public Color getCardRenderColor() {
+    public Color getCardRenderColor()
+    {
         return characterColor.cpy();
     }
 
     @Override
-    public Color getSlashAttackColor() {
+    public Color getSlashAttackColor()
+    {
         return characterColor.cpy();
     }
 
     @Override
-    public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
+    public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect()
+    {
         return new AbstractGameAction.AttackEffect[]{
                 AbstractGameAction.AttackEffect.FIRE,
                 AbstractGameAction.AttackEffect.BLUNT_HEAVY,
@@ -160,22 +186,25 @@ public class CharacterFile extends CustomPlayer {
     }
 
     @Override
-    public String getSpireHeartText() {
+    public String getSpireHeartText()
+    {
         return TEXT[1];
     }
 
     @Override
-    public String getVampireText() {
+    public String getVampireText()
+    {
         return TEXT[2];
     }
 
-    public static class Enums {
+    public static class Enums
+    {
         //TODO: Change these.
         @SpireEnum
-        public static AbstractPlayer.PlayerClass THE_TODO;
-        @SpireEnum(name = "TODO_COLOR")
-        public static AbstractCard.CardColor TODO_COLOR;
-        @SpireEnum(name = "TODO_COLOR")
+        public static AbstractPlayer.PlayerClass THE_FOOL;
+        @SpireEnum(name = "FOOL_YELLOW")
+        public static AbstractCard.CardColor COLOR_YELLOW;
+        @SpireEnum(name = "FOOL_YELLOW")
         @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }

@@ -7,6 +7,49 @@
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
   },
+
+  "${ModID}:AttackIfTargetNotVulnerable": {
+    "NAME": "Target Strength",
+    "DESCRIPTION": "Deal !D! damage. If the target is not Vulnerable, deal another !${ModID}:sd! damage and apply !M! Vulnerable"
+  },
+  "${ModID}:AttackIfNotWeak": {
+    "NAME": "Overenthusiastic Attack",
+    "DESCRIPTION": "If you are not Weak, deal !D! damage and gain !M! Weak."
+  },
+  "${ModID}:QuestionableTactics": {
+    "NAME": "Questionable Tactics",
+    "DESCRIPTION": "If the target has any block, deal !D! damage. If the target does not intend to attack, gain !B! block"
+  },
+  "${ModID}:BlockIfNotFrail": {
+    "NAME": "Inadvisable Rolling",
+    "DESCRIPTION": "If you are not Frail, gain !B! block and !M! Frail"
+  },
+  "${ModID}:DoStuffThatIsDebuffed": {
+    "NAME": "Subvert",
+    "DESCRIPTION": "If you are Weak, deal !D! damage. If you are Frail, gain !B! block. If you are Vulnerable, gain !B! block"
+  },
+  "${ModID}:GainStrengthFromWeak": {
+    "NAME": "Overexert",
+    "DESCRIPTION": "Gain !M! Weak. Gain Strength equal to your Weak."
+  },
+  "${ModID}:GainVigorAndWeak": {
+    "NAME": "Overexert",
+    "DESCRIPTION": "Gain !${ModID}:m2! Weak. Your next attack deals !M! extra damage."
+  },
+  "${ModID}:BlockNextTurn": {
+    "NAME": "Untimely Dodge",
+    "DESCRIPTION": "Gain !B! block at the start of your next turn."
+  },
+  "${ModID}:DiscardAndDraw": {
+    "NAME": "Dither",
+    "DESCRIPTION": "Discard !M! cards. Draw !M! cards."
+  },
+  "${ModID}:FallOver": {
+    "NAME": "Fall Over",
+    "DESCRIPTION": "Impulsive. Gain !B! block. End your turn."
+  },
+
+
   "${ModID}:ExampleTwoAmountPowerCard": {
     "NAME": "Two Amount Power",
     "DESCRIPTION": "At the start of your turn, gain !M! Strength and !${ModID}:m2! Dexterity."
