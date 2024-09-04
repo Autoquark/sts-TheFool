@@ -16,7 +16,7 @@ public class GainVigorAndWeak extends AbstractEasyCard
     public GainVigorAndWeak()
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 10;
+        baseMagicNumber = magicNumber = 12;
         baseSecondMagic = secondMagic = 1;
     }
 
@@ -28,6 +28,6 @@ public class GainVigorAndWeak extends AbstractEasyCard
 
     public void upp()
     {
-        upgradeMagicNumber(3);
+        upgradeMagicNumber(4);
     }
 }

@@ -17,7 +17,7 @@ public class GainStrengthFromWeak extends AbstractEasyCard
 
     public GainStrengthFromWeak()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 1;
     }
 

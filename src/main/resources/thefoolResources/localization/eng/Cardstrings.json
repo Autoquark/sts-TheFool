@@ -1,0 +1,177 @@
+{
+  "${ModID}:Strike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:Defend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+
+  "${ModID}:AttackIfNotWeak": {
+    "NAME": "Overenthusiastic Attack",
+    "DESCRIPTION": "If you are not Weak, deal !D! damage and gain !M! Weak."
+  },
+  "${ModID}:AttackIfTargetNotVulnerable": {
+    "NAME": "Target Strength",
+    "DESCRIPTION": "Deal !D! damage. If the target is not Vulnerable, deal another !${ModID}:sd! damage and apply !M! Vulnerable"
+  },
+  "${ModID}:BlockIfNotFrail": {
+    "NAME": "Inadvisable Rolling",
+    "DESCRIPTION": "If you are not Frail, gain !B! block and !M! Frail"
+  },
+  "${ModID}:BlockNextTurn": {
+    "NAME": "Untimely Dodge",
+    "DESCRIPTION": "Gain !B! block at the start of your next turn."
+  },
+  "${ModID}:ConvertBlockToNextTurnBlock": {
+    "NAME": "Freeze Up",
+    "DESCRIPTION": "Gain !B! block. Lose all of your block, but regain it next turn."
+  },
+  "${ModID}:DiscardAndDraw": {
+    "NAME": "Dither",
+    "DESCRIPTION": "Discard !M! cards. Draw !M! cards."
+  },
+  "${ModID}:DiscardCardAndDealDamage": {
+    "NAME": "Whoops!",
+    "DESCRIPTION": "Discard a random card. Deal !D! damage."
+  },
+  "${ModID}:DiscardPlayDraw": {
+    "NAME": "Bright Idea",
+    "DESCRIPTION": "Discard a card. Play 2 random cards from your hand. Draw a card."
+  },
+  "${ModID}:DoStuffThatIsDebuffed": {
+    "NAME": "Despite All Expectation",
+    "DESCRIPTION": "If you are Weak, deal !D! damage. If you are Frail, gain !B! block. If you are Vulnerable, gain !B! block"
+  },
+  "${ModID}:DrawPerDebuff": {
+    "NAME": "This Is Fine",
+    "DESCRIPTION": "Draw !M! cards for each debuff you have"
+  },
+  "${ModID}:EnergyNextTurn": {
+    "NAME": "Hyperactive",
+    "DESCRIPTION": "${ModID}:Impulsive. Gain !M! energy next turn."
+  },
+  "${ModID}:FallOver": {
+    "NAME": "Fall Over",
+    "DESCRIPTION": "${ModID}:impulsive. Gain !B! block. End your turn."
+  },
+  "${ModID}:GainBlockOnDebuff": {
+    "NAME": "Unfounded Optimism",
+    "DESCRIPTION": "Whenever you gain a debuff, gain !M! block."
+  },
+  "${ModID}:GainEnergyAndRandomDebuff": {
+    "NAME": "Capricious Capering",
+    "DESCRIPTION": "Gain [E]. Randomly gain 1 Frail, Weak or Vulnerable.",
+    "UPG_DESCRIPTION": "Gain [E] [E]. Randomly gain 1 Frail, Weak or Vulnerable."
+  },
+  "${ModID}:GainEnergyCannotPlayStrikesDefends": {
+    "NAME": "Overcomplicate",
+    "DESCRIPTION": "At the start of your turn, gain [E]. You can no longer play Strikes or Defends."
+  },
+  "${ModID}:GainStrengthDexIfNegative": {
+    "NAME": "Dunderheaded Persistence",
+    "DESCRIPTION": "If your Strength or Dexterity are negative, set them to !M!"
+  },
+  "${ModID}:GainStrengthFromWeak": {
+    "NAME": "Overexert",
+    "DESCRIPTION": "Gain !M! Weak. Gain Strength equal to your Weak."
+  },
+  "${ModID}:GainStrengthLoseDex": {
+    "NAME": "Overconfidence",
+    "DESCRIPTION": "Gain !M! strength. Lose !${ModID}:m2! dexterity"
+  },
+  "${ModID}:GainThenLoseStrength": {
+    "NAME": "Sprain",
+    "DESCRIPTION": "Gain !M! strength. At the end of this turn, lose !${ModID}:m2! strength"
+  },
+  "${ModID}:GainVigorAndWeak": {
+    "NAME": "Excessive Wind Up",
+    "DESCRIPTION": "Gain !${ModID}:m2! Weak. Your next attack deals !M! extra damage."
+  },
+  "${ModID}:LoseOnFatalAttack": {
+    "NAME": "Too Easy!",
+    "DESCRIPTION": "Deal !D! damage. If Fatal, remove this card permanently from your deck."
+  },
+  "${ModID}:MultihitLoseStrength": {
+    "NAME": "Wild Pumelling",
+    "DESCRIPTION": "Deal !D! damage !M! times. Lose 1 Strength."
+  },
+  "${ModID}:PlayTopCardOfDeck": {
+    "NAME": "Without Thinking",
+    "DESCRIPTION": "${ModID}:Impulsive. Play the top card of your deck"
+  },
+  "${ModID}:QuestionableTactics": {
+    "NAME": "Questionable Tactics",
+    "DESCRIPTION": "If the target has any block, deal !D! damage. If the target does not intend to attack, gain !B! block"
+  },
+  "${ModID}:TopdeckAndDrawFromDiscard": {
+    "NAME": "Backpedal",
+    "DESCRIPTION": "Put a card from your hand onto your deck. Put a random card from your discard pile into your hand."
+  },
+  "${ModID}:TrackDamageAndHealAtEndOfCombat": {
+    "NAME": "Thick-headed",
+    "DESCRIPTION": "Lose 1 energy at the start of each turn. At the end of combat, heal for all damage taken after playing this card."
+  },
+  "${ModID}:TransferDebuffs": {
+    "NAME": "Contagious Incompetence",
+    "DESCRIPTION": "Apply a copy of each debuff you have",
+    "UPG_DESCRIPTION": "Transfer your debuffs to the target"
+  },
+
+
+
+  "${ModID}:ExampleTwoAmountPowerCard": {
+    "NAME": "Two Amount Power",
+    "DESCRIPTION": "At the start of your turn, gain !M! Strength and !${ModID}:m2! Dexterity."
+  },
+  "${ModID}:InlinePowerDemo": {
+    "NAME": "Inline Power",
+    "DESCRIPTION": "Strikes deal !M! more damage. NL At the end of your turn, gain !M! Block.",
+    "EXTENDED_DESCRIPTION": [
+      "Strike+, Block+",
+      "#yStrikes deal #b",
+      " additional damage. At the end of your turn, gain #b",
+      " #yBlock."
+    ]
+  },
+  "${ModID}:SelectCardsPlusCardMods": {
+    "NAME": "Cool Card Stuff",
+    "DESCRIPTION": "Choose from 1 of 3 cost 0 cards from any class. NL Add it into your hand. NL It gains Ethereal and Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "Choose a card to add into your hand with Ethereal and Exhaust."
+    ]
+  },
+  "${ModID}:EasyXCostDemo": {
+    "NAME": "Easy X Cost",
+    "DESCRIPTION": "{@@}Deal !D! damage X{!M!|>0=+!M!} times. NL Gain X{!M!|>0=+!M!} Strength. NL Exhaust."
+  },
+  "${ModID}:EasyModalChoiceDemo": {
+    "NAME": "Easy Modal Choice",
+    "DESCRIPTION": "Choose one: Draw !M! cards or gain !${ModID}:m2! Strength.",
+    "EXTENDED_DESCRIPTION": [
+      "Draw",
+      "Draw ",
+      " cards.",
+      "Strength",
+      "Gain ",
+      " Strength."
+    ]
+  },
+  "${ModID}:DrawAndShiv": {
+    "NAME": "Draw and Shiv",
+    "DESCRIPTION": "Draw 1 card. NL Add 1 *Shiv into your hand."
+  },
+  "${ModID}:TwoTypesOfDamage": {
+    "NAME": "Two Damage Values",
+    "DESCRIPTION": "Deal !D! damage. NL If you're Vulnerable, deal !${ModID}:sd! damage instead."
+  },
+  "${ModID}:StartupBlockCard": {
+    "NAME": "Startup And AOE",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Startup: Gain !M! Block."
+  },
+  "${ModID}:MultiCardPreviewAndDrawCallback": {
+    "NAME": "Previews and Callbacks",
+    "DESCRIPTION": "{@@}Shuffle *Smite{!Upgrades!|>0=+} and *Safety{!Upgrades!|>0=+} into your draw pile. NL Draw 1 card. NL If it's Colorless, deal !D! damage to ALL enemies."
+  }
+}

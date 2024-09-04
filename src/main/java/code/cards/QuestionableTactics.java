@@ -1,5 +1,6 @@
 package code.cards;
 
+import code.actions.ConditionalAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,8 +17,8 @@ public class QuestionableTactics extends AbstractEasyCard
     public QuestionableTactics()
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 8;
-        baseBlock = 8;
+        baseDamage = 12;
+        baseBlock = 12;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m)
@@ -27,19 +28,15 @@ public class QuestionableTactics extends AbstractEasyCard
             applyDamage(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         }
 
-        if(!Arrays.stream(AttackIntents).anyMatch(m.intent::equals))
-        {
-            applyBlock();
-        }
+        addToBot(new ConditionalAction(() -> Arrays.stream(AttackIntents).noneMatch(m.intent::equals), getBlockAction()));
     }
 
     public void upp()
     {
-        upgradeDamage(2);
-        upgradeBlock(2);
-
+        upgradeDamage(4);
+        upgradeBlock(4);
     }
 
-    private static AbstractMonster.Intent[] AttackIntents = new AbstractMonster.Intent[]
+    private static final AbstractMonster.Intent[] AttackIntents = new AbstractMonster.Intent[]
             {AbstractMonster.Intent.ATTACK, AbstractMonster.Intent.ATTACK_BUFF, AbstractMonster.Intent.ATTACK_DEBUFF, AbstractMonster.Intent.ATTACK_DEFEND};
 }

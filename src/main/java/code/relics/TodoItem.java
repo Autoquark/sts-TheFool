@@ -8,6 +8,6 @@ public class TodoItem extends AbstractEasyRelic {
     public static final String ID = makeID("TodoItem");
 
     public TodoItem() {
-        super(ID, RelicTier.STARTER, LandingSound.FLAT, TheFool.Enums.COLOR_YELLOW);
+        super(ID, RelicTier.DEPRECATED, LandingSound.FLAT, TheFool.Enums.COLOR_YELLOW);
     }
 }

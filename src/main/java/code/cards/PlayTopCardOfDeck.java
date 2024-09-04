@@ -4,31 +4,30 @@ import static code.TheFoolMod.makeID;
 
 import basemod.helpers.CardModifierManager;
 import code.cardmodifiers.ImpulsiveCardModifier;
-import com.megacrit.cardcrawl.actions.common.EndTurnAction;
-import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
+import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class FallOver extends AbstractEasyCard
+public class PlayTopCardOfDeck extends AbstractEasyCard
 {
-    public final static String ID = makeID("FallOver");
-    // intellij stuff skill, self, rare, , , 10, 4, , 
+    public final static String ID = makeID("PlayTopCardOfDeck");
+    // intellij stuff skill, self, Uncommon, , , , , , 
 
-    public FallOver()
+    public PlayTopCardOfDeck()
     {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        baseBlock = 11;
         CardModifierManager.addModifier(this, new ImpulsiveCardModifier(true));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        applyBlock();
-        addToBot(new PressEndTurnButtonAction());
+        AbstractMonster target = AbstractDungeon.getRandomMonster();
+        addToBot(new PlayTopCardAction(target, false));
     }
 
     public void upp()
     {
-        upgradeBlock(4);
+        upgradeBaseCost(0);
     }
 }

@@ -1,8 +1,13 @@
 package code.cards;
 
+import code.actions.ConditionalAction;
 import code.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 
@@ -24,11 +29,10 @@ public class AttackIfTargetNotVulnerable extends AbstractEasyCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         applyDamage(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        if(!m.hasPower(VulnerablePower.POWER_ID))
-        {
-            altDmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-            Wiz.applyToEnemy(m, new VulnerablePower(m, magicNumber, false));
-        }
+        addToBot(new ConditionalAction(
+                () -> !m.hasPower(VulnerablePower.POWER_ID),
+                new DamageAction(m, new DamageInfo(AbstractDungeon.player, secondDamage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY),
+                new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false))));
     }
 
     public void upp()

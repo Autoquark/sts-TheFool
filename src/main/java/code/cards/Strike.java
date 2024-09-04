@@ -1,7 +1,5 @@
 package code.cards;
 
-import basemod.helpers.CardModifierManager;
-import code.cardmodifiers.ImpulsiveCardModifier;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,9 +17,6 @@ public class Strike extends AbstractEasyCard
         baseDamage = 6;
         tags.add(CardTags.STRIKE);
         tags.add(CardTags.STARTER_STRIKE);
-
-        // TEMP
-        CardModifierManager.addModifier(this, new ImpulsiveCardModifier(true));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m)

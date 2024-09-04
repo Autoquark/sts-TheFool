@@ -1,0 +1,32 @@
+{
+  "${ModID}:DrawCardAtStartOfTurnIfDebuffedRelic": {
+    "NAME": "Sock With A Hole",
+    "FLAVOR": "It carries great symbolic significance.",
+    "DESCRIPTIONS": [
+      "At the start of your turn, if you have at least one debuff, draw a card."
+    ]
+  },
+  "${ModID}:EndOfTurnGainBlockIfDebuffedRelic": {
+    "NAME": "Grandfather's Lead Plate",
+    "FLAVOR": "This lead plate once belonged to your grandfather. Despite the massive weight, you like to carry it for luck.",
+    "DESCRIPTIONS": [
+      "At the end of your turn, if you have at least one debuff, gain 2 block."
+    ]
+  },
+  "${ModID}:GainEnergyIfDebuffedRelic": {
+    "NAME": "Silly Hat",
+    "FLAVOR": "This is by far the most frivolous headpiece I've ever laid eyes upon. Incredible. - The Architect.",
+    "DESCRIPTIONS": [
+      "At the start of your turn, if you have at least one debuff, gain [E]."
+    ]
+  },
+
+
+  "${ModID}:TodoItem": {
+    "NAME": "Todo Item",
+    "FLAVOR": "TODO: make this a sweet relic.",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  }
+}

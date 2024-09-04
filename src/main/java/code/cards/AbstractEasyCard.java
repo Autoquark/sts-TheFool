@@ -249,13 +249,18 @@ public abstract class AbstractEasyCard extends CustomCard {
         return result;
     }
 
+    protected DamageAction getDamageAction(AbstractMonster m, AbstractGameAction.AttackEffect fx)
+    {
+        return new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx);
+    }
+
     // These shortcuts are specifically for cards. All other shortcuts that aren't specifically for cards can go in Wiz.
     protected void applyDamage(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
-        addToBottom(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
+        addToBottom(getDamageAction(m, fx));
     }
 
     protected void dmgTop(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
-        Wiz.addToTop(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
+        Wiz.addToTop(getDamageAction(m, fx));
     }
 
     protected void allDmg(AbstractGameAction.AttackEffect fx) {
@@ -305,11 +310,16 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     protected void applyBlock() {
-        addToBottom(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
+        addToBottom(getBlockAction());
     }
 
     protected void blckTop() {
-        Wiz.addToTop(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
+        Wiz.addToTop(getBlockAction());
+    }
+
+    protected GainBlockAction getBlockAction()
+    {
+        return new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block);
     }
 
     protected void altBlck() {

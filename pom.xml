@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>UnimportantInfo</groupId>
 
-    <artifactId>TheFool</artifactId>
+    <artifactId>thefool</artifactId>
     <version>0.0.1</version>
     <name>The Fool</name>
     <description>The Fool: A character for Slay the Spire</description>
@@ -16,7 +16,7 @@
         <SlayTheSpire.version>12-22-2020</SlayTheSpire.version>
         <ModTheSpire.version>3.18.2</ModTheSpire.version>
 
-        <ModID>TheFool</ModID>
+        <ModID>thefool</ModID>
 
         <Steam.path>D:/GAMES/Steam/steamapps/</Steam.path>
 

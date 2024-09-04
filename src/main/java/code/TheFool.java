@@ -5,8 +5,8 @@ import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import basemod.interfaces.OnPlayerTurnStartSubscriber;
 import basemod.patches.com.megacrit.cardcrawl.characters.AbstractPlayer.TurnStartHooks;
-import code.cards.DiscardAndDraw;
-import code.cards.GainStrengthFromWeak;
+import code.cards.*;
+import code.relics.EndOfTurnGainBlockIfDebuffedRelic;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
@@ -22,8 +22,6 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
-import code.cards.Defend;
-import code.cards.Strike;
 import code.relics.TodoItem;
 
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ import static code.TheFoolMod.*;
 public class TheFool extends CustomPlayer
 {
 
-    static final String ID = makeID("ModdedCharacter");
+    static final String ID = makeID("TheFool");
     static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     static final String[] NAMES = characterStrings.NAMES;
     static final String[] TEXT = characterStrings.TEXT;
@@ -75,7 +73,7 @@ public class TheFool extends CustomPlayer
             retVal.add(Defend.ID);
         }
 
-        retVal.add(DiscardAndDraw.ID);
+        retVal.add(GainEnergyAndRandomDebuff.ID);
 
         return retVal;
     }
@@ -83,7 +81,7 @@ public class TheFool extends CustomPlayer
     public ArrayList<String> getStartingRelics()
     {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(TodoItem.ID);
+        retVal.add(EndOfTurnGainBlockIfDebuffedRelic.ID);
         return retVal;
     }
 

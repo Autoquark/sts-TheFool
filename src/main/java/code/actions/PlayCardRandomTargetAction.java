@@ -32,6 +32,7 @@ public class PlayCardRandomTargetAction extends AbstractGameAction
             return;
         }
 
+        group.removeCard(card);
         AbstractDungeon.player.limbo.group.add(card);
         card.current_y = -200.0F * Settings.scale;
         card.target_x = (float)Settings.WIDTH / 2.0F + 200.0F * Settings.xScale;

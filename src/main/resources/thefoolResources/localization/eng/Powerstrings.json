@@ -1,0 +1,26 @@
+{
+  "${ModID}:ExampleTwoAmountPower": {
+    "NAME": "Example 2",
+    "DESCRIPTIONS": [
+      "At the start of your turn, gain #b",
+      " #yStrength and #b",
+      " #yDexterity."
+    ]
+  },
+
+  "${ModID}:GainBlockOnDebuffPower": {
+    "NAME": "In Denial",
+    "DESCRIPTIONS": [
+      "Whenever a debuff is applied to you, gain #b",
+      " block"
+    ]
+  },
+  "${ModID}:TrackDamageAndHealAtEndOfCombatPower": {
+    "NAME": "Thick-headed",
+    "DESCRIPTIONS": [
+      "At the start of each turn, lose ",
+      "energy. At the end of combat, heal for ",
+      " times the damage you took since playing this. Currently healing for "
+    ]
+  }
+}

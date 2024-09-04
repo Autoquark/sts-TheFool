@@ -2,8 +2,10 @@ package code.cards;
 
 import static code.TheFoolMod.makeID;
 
+import code.actions.ConditionalAction;
 import code.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -22,15 +24,14 @@ public class AttackIfNotWeak extends AbstractEasyCard
 
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if(!p.hasPower(WeakPower.POWER_ID))
-        {
-            applyDamage(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-            Wiz.applyToSelf(new WeakPower(p, magicNumber, false));
-        }
+        addToBot(new ConditionalAction(
+                () -> !p.hasPower(WeakPower.POWER_ID),
+                getDamageAction(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY),
+                new ApplyPowerAction(p, p, new WeakPower(p, magicNumber, false))));
     }
 
     public void upp()
     {
-        upgradeDamage(3);
+        upgradeDamage(4);
     }
 }

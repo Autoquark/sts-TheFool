@@ -17,7 +17,7 @@ public class DiscardAndDraw extends AbstractEasyCard
 
     public DiscardAndDraw()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 3;
     }
 
@@ -37,6 +37,6 @@ public class DiscardAndDraw extends AbstractEasyCard
 
     public void upp()
     {
-        upgradeMagicNumber(1);
+        upgradeBaseCost(0);
     }
 }

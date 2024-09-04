@@ -44,7 +44,7 @@ public class TheFoolMod implements
         OnStartBattleSubscriber,
         AddAudioSubscriber {
 
-    public static final String modID = "TheFool"; //TODO: Change this.
+    public static final String modID = "thefool";
 
     public static String makeID(String idText) {
         return modID + ":" + idText;
