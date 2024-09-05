@@ -25,17 +25,23 @@ public class GainStrengthDexIfNegative extends AbstractEasyCard
 
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        addToBot(new ConditionalAction(
-                () -> p.hasPower(StrengthPower.POWER_ID) && p.getPower(StrengthPower.POWER_ID).amount < 0,
-                new RemoveSpecificPowerAction(p, p, StrengthPower.POWER_ID),
-                new ApplyPowerAction(p, p, new StrengthPower(p, magicNumber))
-        ));
+        if(p.hasPower(StrengthPower.POWER_ID) && p.getPower(StrengthPower.POWER_ID).amount < 0)
+        {
+            addToBot(new RemoveSpecificPowerAction(p, p, StrengthPower.POWER_ID));
+            if(upgraded)
+            {
+                addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, magicNumber)));
+            }
+        }
 
-        addToBot(new ConditionalAction(
-                () -> p.hasPower(DexterityPower.POWER_ID) && p.getPower(DexterityPower.POWER_ID).amount < 0,
-                new RemoveSpecificPowerAction(p, p, DexterityPower.POWER_ID),
-                new ApplyPowerAction(p, p, new DexterityPower(p, magicNumber))
-        ));
+        if(p.hasPower(DexterityPower.POWER_ID) && p.getPower(DexterityPower.POWER_ID).amount < 0)
+        {
+            addToBot(new RemoveSpecificPowerAction(p, p, DexterityPower.POWER_ID));
+            if(upgraded)
+            {
+                addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, magicNumber)));
+            }
+        }
     }
 
     public void upp()

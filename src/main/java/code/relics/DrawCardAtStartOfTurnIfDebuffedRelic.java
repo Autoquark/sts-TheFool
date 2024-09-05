@@ -5,7 +5,6 @@ import code.actions.ConditionalAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import static code.TheFoolMod.makeID;
 
@@ -15,7 +14,7 @@ public class DrawCardAtStartOfTurnIfDebuffedRelic extends AbstractEasyRelic
 
     public DrawCardAtStartOfTurnIfDebuffedRelic()
     {
-        super(ID, AbstractRelic.RelicTier.STARTER, AbstractRelic.LandingSound.CLINK, TheFool.Enums.COLOR_YELLOW);
+        super(ID, RelicTier.UNCOMMON, LandingSound.FLAT, TheFool.Enums.COLOR_YELLOW);
     }
 
     @Override

@@ -16,7 +16,10 @@ public class TrackDamageAndHealAtEndOfCombat extends AbstractEasyCard
 
     public TrackDamageAndHealAtEndOfCombat()
     {
-        super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 2, CardType.POWER, CardRarity.SPECIAL, CardTarget.SELF);
+
+        // Multiple stacks means you heal more damage than you took, so players could be incentivised to stall for this
+        tags.add(CardTags.HEALING);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m)

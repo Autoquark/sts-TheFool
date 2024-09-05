@@ -15,7 +15,7 @@ import static code.TheFoolMod.makeID;
 
 public class TrackDamageAndHealAtEndOfCombatPower extends AbstractEasyPower
 {
-    public final static String POWER_ID = makeID("GainBlockOnDebuffPower");
+    public final static String POWER_ID = makeID("TrackDamageAndHealAtEndOfCombatPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
 
@@ -23,7 +23,9 @@ public class TrackDamageAndHealAtEndOfCombatPower extends AbstractEasyPower
     {
         super(POWER_ID, NAME, PowerType.BUFF, false, target, amount);
         isTwoAmount = true;
+        amount2 = 0;
 
+        updateDescription();
     }
 
     public void atStartOfTurn() {
@@ -32,28 +34,11 @@ public class TrackDamageAndHealAtEndOfCombatPower extends AbstractEasyPower
     }
 
     @Override
-    public void onEnergyRecharge()
-    {
-        super.onEnergyRecharge();
-    }
-
-    @Override
     public int onLoseHp(int damageAmount)
     {
         amount2 += damageAmount;
+        updateDescription();
         return super.onLoseHp(damageAmount);
-    }
-
-    @Override
-    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type, AbstractCard card)
-    {
-        return super.atDamageFinalReceive(damage, type, card);
-    }
-
-    @Override
-    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type)
-    {
-        return super.atDamageFinalReceive(damage, type);
     }
 
     @Override

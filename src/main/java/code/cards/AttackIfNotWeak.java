@@ -17,7 +17,7 @@ public class AttackIfNotWeak extends AbstractEasyCard
 
     public AttackIfNotWeak()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity./*COMMON*/ SPECIAL, CardTarget.ENEMY);
         baseDamage = 12;
         baseMagicNumber = magicNumber = 2;
     }

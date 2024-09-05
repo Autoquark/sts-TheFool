@@ -152,8 +152,8 @@ public class CardArtRoller {
 
     private static final HashMap<String, TextureAtlas.AtlasRegion> doneCards = new HashMap<>();
     public static HashMap<String, ReskinInfo> infos = new HashMap<>();
-    private static final ShaderProgram shade = new ShaderProgram(vertexShaderHSLC, fragmentShaderHSLC);
-    private static final ShaderProgram bicolorShader = new ShaderProgram(vertexBicolorShader,fragmentBicolorShader);
+    public static final ShaderProgram shade = new ShaderProgram(vertexShaderHSLC, fragmentShaderHSLC);
+    public static final ShaderProgram bicolorShader = new ShaderProgram(vertexBicolorShader,fragmentBicolorShader);
     private static final String[] strikes = {
             Strike_Red.ID,
             Strike_Blue.ID,

@@ -47,9 +47,9 @@ public class PlayCardRandomTargetAction extends AbstractGameAction
         this.addToTop(new NewQueueCardAction(card, target, false, true));
         this.addToTop(new UnlimboAction(card));
         if (!Settings.FAST_MODE) {
-            this.addToTop(new WaitAction(Settings.ACTION_DUR_MED));
+            this.addToTop(new WaitAction(Settings.ACTION_DUR_LONG));
         } else {
-            this.addToTop(new WaitAction(Settings.ACTION_DUR_FASTER));
+            this.addToTop(new WaitAction(Settings.ACTION_DUR_MED));
         }
     }
 }

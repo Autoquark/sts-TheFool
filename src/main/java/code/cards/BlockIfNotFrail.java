@@ -18,7 +18,7 @@ public class BlockIfNotFrail extends AbstractEasyCard
 
     public BlockIfNotFrail()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity./*COMMON*/SPECIAL, CardTarget.SELF);
         baseBlock = 12;
         baseMagicNumber = magicNumber = 2;
     }

@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.megacrit.cardcrawl.core.Settings;
 
 
+
 public class WizArt {
 
     //draw helpers
@@ -133,6 +134,86 @@ public class WizArt {
     public static void loadState(SpriteBatch sb) {
         stateSave.load(sb);
     }
+
+    /*private static FrameBuffer smallBuffer = null;
+    private static OrthographicCamera smallCamera = null;
+
+    public static Texture copyCardTexture(AbstractCard toCard, String fromCardId, Color HSLC, boolean flipX)
+    {
+        AbstractCard artCard = CardLibrary.getCard(fromCardId);
+        TextureAtlas.AtlasRegion t = artCard.portrait;
+        t.flip(flipX, true);
+        boolean shouldSwapColorTexture = true;
+        if (smallBuffer == null) {
+            smallBuffer = ImageHelper.createBuffer(250, 190);
+            shouldSwapColorTexture = false;
+        }
+        if (smallCamera == null) {
+            smallCamera = new OrthographicCamera(250, 190);
+        }
+        smallCamera.position.setZero();
+        if (CardArtRoller.needsMask(toCard, artCard)) {
+            if (artCard.type == AbstractCard.CardType.ATTACK) {
+                if (toCard.type == AbstractCard.CardType.POWER) {
+                    //Attack to Power
+                    smallCamera.zoom = 0.976f;
+                    smallCamera.translate(-3, 0);
+                } else {
+                    //Attack to Skill, Status, Curse
+                    smallCamera.zoom = 0.9f;
+                    smallCamera.translate(0, -10);
+                }
+            } else if (artCard.type == AbstractCard.CardType.POWER) {
+                if (toCard.type == AbstractCard.CardType.ATTACK) {
+                    //Power to Attack
+                    smallCamera.zoom = 0.9f;
+                    smallCamera.translate(0, -10);
+                } else {
+                    //Power to Skill, Status, Curse
+                    smallCamera.zoom = 0.825f;
+                    smallCamera.translate(-1, -18);
+                }
+            } else {
+                if (toCard.type == AbstractCard.CardType.POWER) {
+                    //Skill, Status, Curse to Power
+                    smallCamera.zoom = 0.976f;
+                    smallCamera.translate(-3, 0);
+                }
+                //Skill, Status, Curse to Attack is free
+            }
+            smallCamera.update();
+        }
+        SpriteBatch sb = new SpriteBatch();
+        sb.setProjectionMatrix(smallCamera.combined);
+        smallBuffer.begin();
+        if (shouldSwapColorTexture) {
+            WizArt.swapTextureAndClear(smallBuffer);
+        } else {
+            WizArt.clearCurrentBuffer();
+        }
+        sb.begin();
+        boolean isBicolor = false;
+        if (!isBicolor) {
+            sb.setShader(shade);
+            sb.setColor(HSLC);
+        } else {
+            sb.setShader(bicolorShader);
+            sb.setColor(Color.WHITE);
+            setBicolorShaderValues(r);
+        }
+        sb.draw(t, -125, -95);
+        if (needsMask(c, artCard)) {
+            sb.setBlendFunction(GL_DST_COLOR, GL_ZERO);
+            Texture mask = getMask(c);
+            sb.setProjectionMatrix(new OrthographicCamera(250, 190).combined);
+            sb.draw(mask, -125, -95, -125, -95, 250, 190, 1, 1, 0, 0, 0, mask.getWidth(), mask.getHeight(), false, true);
+        }
+        sb.end();
+        smallBuffer.end();
+        t.flip(r.flipX, true);
+        TextureRegion a = ImageHelper.getBufferTexture(smallBuffer);
+        return new TextureAtlas.AtlasRegion(a.getTexture(), 0, 0, 250, 190);
+    }*/
 
     private static class StateData {
         private Color color = null;

@@ -6,9 +6,12 @@ import basemod.abstracts.DynamicVariable;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import code.actions.SetIsInStartOfTurnDrawAction;
+import code.util.TexLoader;
 import code.util.Wiz;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -42,6 +45,7 @@ public class TheFoolMod implements
         OnPlayerTurnStartSubscriber,
         OnPlayerTurnStartPostDrawSubscriber,
         OnStartBattleSubscriber,
+        PostInitializeSubscriber,
         AddAudioSubscriber {
 
     public static final String modID = "thefool";
@@ -66,6 +70,10 @@ public class TheFoolMod implements
     private static final String CARD_ENERGY_L = makeImagePath("1024/energy.png");
     private static final String CHARSELECT_BUTTON = makeImagePath("charSelect/charButton.png");
     private static final String CHARSELECT_PORTRAIT = makeImagePath("charSelect/charBG.png");
+
+    public static final TextureAtlas UIAtlas = new TextureAtlas();
+    public static Texture impulsiveIcon;
+    public static TextureAtlas.AtlasRegion impulsiveIconRegion;
 
     private static boolean isInStartOfTurnDraw = false;
 
@@ -222,5 +230,12 @@ public class TheFoolMod implements
     public void receiveOnBattleStart(AbstractRoom abstractRoom)
     {
         Wiz.addToBottom(new SetIsInStartOfTurnDrawAction(true));
+    }
+
+    @Override
+    public void receivePostInitialize()
+    {
+        impulsiveIcon = TexLoader.getTexture("thefoolResources/images/ui/cardmods/impulsiveIcon.png");
+        impulsiveIconRegion = UIAtlas.addRegion("impulsiveIcon", impulsiveIcon, 0, 0, impulsiveIcon.getWidth(), impulsiveIcon.getHeight());
     }
 }

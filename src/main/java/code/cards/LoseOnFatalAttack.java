@@ -8,8 +8,11 @@ import code.cards.AbstractEasyCard;
 import static code.TheFoolMod.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class LoseOnFatalAttack extends AbstractEasyCard
@@ -25,7 +28,10 @@ public class LoseOnFatalAttack extends AbstractEasyCard
 
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        addToBot(new DamageWithFatalEffectAction(m, new DamageInfo(p, damage), new RemoveFromMasterDeckAction(this)));
+        addToBot(new DamageWithFatalEffectAction(m, new DamageInfo(p, damage),
+                new RemoveFromMasterDeckAction(this),
+                new ExhaustSpecificCardAction(this, p.limbo)
+        ));
     }
 
     public void upp()

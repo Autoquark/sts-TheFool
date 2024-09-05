@@ -28,7 +28,5 @@ public class EndOfTurnGainBlockIfDebuffedRelic extends AbstractEasyRelic
                 new GainBlockAction(AbstractDungeon.player, 2),
                 new RelicAboveCreatureAction(AbstractDungeon.player, this)
         ));
-
-
     }
 }

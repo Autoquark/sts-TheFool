@@ -15,7 +15,7 @@ public class GainEnergyIfDebuffedRelic extends AbstractEasyRelic
 
     public GainEnergyIfDebuffedRelic()
     {
-        super(ID, RelicTier.BOSS, LandingSound.CLINK, TheFool.Enums.COLOR_YELLOW);
+        super(ID, RelicTier.BOSS, LandingSound.FLAT, TheFool.Enums.COLOR_YELLOW);
     }
 
     @Override

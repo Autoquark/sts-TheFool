@@ -5,6 +5,7 @@ import static code.TheFoolMod.makeID;
 import code.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -22,6 +23,7 @@ public class DiscardCardAndDealDamage extends AbstractEasyCard {
     {
         addToBot(new DiscardAction(p, p, 1, true));
         applyDamage(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        addToBot(new DrawCardAction(1));
     }
 
     public void upp()

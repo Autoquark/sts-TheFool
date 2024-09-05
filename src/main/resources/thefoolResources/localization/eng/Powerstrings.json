@@ -8,19 +8,39 @@
     ]
   },
 
+  "${ModID}:DrawOnDebuffPower": {
+    "NAME": "In Denial",
+    "DESCRIPTIONS": [
+      "When a debuff is applied to you, draw ",
+      " card(s)."
+    ]
+  },
+  "${ModID}:EndOfTurnDamageIfNoBlockPower": {
+    "NAME": "Recklessness",
+    "DESCRIPTIONS": [
+      "At the end of your turn, if you have no block, deal ",
+      " damage to all enemies."
+    ]
+  },
   "${ModID}:GainBlockOnDebuffPower": {
     "NAME": "In Denial",
     "DESCRIPTIONS": [
       "Whenever a debuff is applied to you, gain #b",
-      " block"
+      " block."
+    ]
+  },
+  "${ModID}:GainEnergyCannotPlayStrikesDefendsPower": {
+    "NAME": "Overcomplicate",
+    "DESCRIPTIONS": [
+      "At the start of each turn, gain [E]. You can no longer play Strikes or Defends. Does not stack."
     ]
   },
   "${ModID}:TrackDamageAndHealAtEndOfCombatPower": {
     "NAME": "Thick-headed",
     "DESCRIPTIONS": [
       "At the start of each turn, lose ",
-      "energy. At the end of combat, heal for ",
-      " times the damage you took since playing this. Currently healing for "
+      " energy. Gains charges equal to ",
+      " times damage taken and heals for that much at the end of combat. Currently healing for "
     ]
   }
 }

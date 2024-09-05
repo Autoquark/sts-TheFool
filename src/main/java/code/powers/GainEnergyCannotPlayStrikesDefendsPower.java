@@ -9,7 +9,7 @@ import static code.TheFoolMod.makeID;
 
 public class GainEnergyCannotPlayStrikesDefendsPower extends AbstractEasyPower
 {
-    public final static String POWER_ID = makeID("EnergyCannotPlayStrikesDefendsPower");
+    public final static String POWER_ID = makeID("GainEnergyCannotPlayStrikesDefendsPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
 
