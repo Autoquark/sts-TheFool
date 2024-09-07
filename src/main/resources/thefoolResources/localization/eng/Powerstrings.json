@@ -15,6 +15,20 @@
       " card(s)."
     ]
   },
+  "${ModID}:DrawOnPlayPower": {
+    "NAME": "Restlessness",
+    "DESCRIPTIONS": [
+      "This turn, when you play a card, draw a card."
+    ]
+  },
+  "${ModID}:DrawReductionSelfAppliedPower": {
+    "NAME": "Draw Reduction",
+    "DESCRIPTIONS": [
+      "Draw 1 less card next turn.",
+      "Draw 1 less card for the next ",
+      " turns."
+    ]
+  },
   "${ModID}:EndOfTurnDamageIfNoBlockPower": {
     "NAME": "Recklessness",
     "DESCRIPTIONS": [

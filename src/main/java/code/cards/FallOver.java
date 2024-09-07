@@ -4,8 +4,9 @@ import static code.TheFoolMod.makeID;
 
 import basemod.helpers.CardModifierManager;
 import code.cardmodifiers.ImpulsiveCardModifier;
-import com.megacrit.cardcrawl.actions.common.EndTurnAction;
+import code.util.CardArtRoller;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
+import com.megacrit.cardcrawl.cards.colorless.Trip;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -17,7 +18,7 @@ public class FallOver extends AbstractEasyCard
     public FallOver()
     {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        baseBlock = 11;
+        baseBlock = 13;
         CardModifierManager.addModifier(this, new ImpulsiveCardModifier(true));
     }
 
@@ -29,6 +30,12 @@ public class FallOver extends AbstractEasyCard
 
     public void upp()
     {
-        upgradeBlock(4);
+        upgradeBlock(5);
+    }
+
+    @Override
+    public CardArtRoller.ReskinInfo reskinInfo(String ID)
+    {
+        return new CardArtRoller.ReskinInfo(Trip.ID, 1f, 0.5f, 0.5f, 0.5f, true);
     }
 }

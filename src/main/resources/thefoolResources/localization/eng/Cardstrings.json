@@ -12,6 +12,10 @@
     "NAME": "Overenthusiastic Attack",
     "DESCRIPTION": "Deal !D! damage NL Gain !M! Weak."
   },
+  "${ModID}:AttackCheaperPerDebuff": {
+    "NAME": "Peeved",
+    "DESCRIPTION": "Deal !D! damage NL This costs 1 less to play for each debuff you have."
+  },
   "${ModID}:AttackIfNotWeak": {
     "NAME": "Overenthusiastic Attack",
     "DESCRIPTION": "If you are not Weak, deal !D! damage and gain !M! Weak."
@@ -44,13 +48,21 @@
     "NAME": "Whoops!",
     "DESCRIPTION": "Discard a random card. NL Deal !D! damage. NL Draw a card."
   },
+  "${ModID}:DiscardImpulsiveAndDraw": {
+    "NAME": "Bored!",
+    "DESCRIPTION": "Discard all your Impulsive cards. Draw a card per card discarded."
+  },
   "${ModID}:DiscardPlayDraw": {
     "NAME": "Bright Idea",
     "DESCRIPTION": "Discard a card. NL Play 2 random cards from your hand. NL Draw a card."
   },
   "${ModID}:DoStuffThatIsDebuffed": {
     "NAME": "Despite All Expectation",
-    "DESCRIPTION": "If you are Weak, deal !D! damage. NL If you are Frail, gain !B! block. NL If you are Vulnerable, gain !B! block."
+    "DESCRIPTION": "If you are...NL Weak, deal !D! damage. NL Frail, gain !B! block. NL Vulnerable, gain !B! block."
+  },
+  "${ModID}:DrawAndGainDazed": {
+    "NAME": "Dither",
+    "DESCRIPTION": "Draw !M! cards. Add a Dazed to your discard pile."
   },
   "${ModID}:DrawAndGainMinusDraw": {
     "NAME": "Dither",
@@ -59,6 +71,10 @@
   "${ModID}:DrawOnDebuff": {
     "NAME": "In Denial",
     "DESCRIPTION": "Whenever a debuff is applied to you, draw 1 card."
+  },
+  "${ModID}:DrawOnPlay": {
+    "NAME": "Restlessness",
+    "DESCRIPTION": "Whenever you play a card this turn, draw a card."
   },
   "${ModID}:DrawPerDebuff": {
     "NAME": "This Is Fine",
@@ -87,7 +103,7 @@
   },
   "${ModID}:GainEnergyCannotPlayStrikesDefends": {
     "NAME": "Overcomplicate",
-    "DESCRIPTION": "At the start of your turn, gain [E]. NL You can no longer play Strikes or Defends."
+    "DESCRIPTION": "At the start of your turn, gain [E]. NL You can no longer play Strikes and Defends."
   },
   "${ModID}:GainStrengthDexIfNegative": {
     "NAME": "Dunderheaded Persistence",
@@ -123,7 +139,12 @@
   },
   "${ModID}:ImpulsiveEnergy": {
     "NAME": "Hyperactive",
-    "DESCRIPTION": "${ModID}:Impulsive NL {@@}Gain{!M!|repeat= [E]|>4= !M! [E]}. NL Draw a card."
+    "DESCRIPTION": "${ModID}:Impulsive NL {@@}Gain{!M!|repeat= [E]|>4= !M! [E]}. NL Draw a card. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "${ModID}:Impulsive NL {@@}Gain{!M!|repeat= [E]|>4= !M! [E]}. NL Draw a card."
+  },
+  "${ModID}:IncreaseCostReduceOtherCardCost": {
+    "NAME": "Cower",
+    "DESCRIPTION": "Gain !B! block NL Reduce the cost of a random card in your hand by 1 this combat NL Increase this card's cost by 1 this combat"
   },
   "${ModID}:LoseOnFatalAttack": {
     "NAME": "Too Easy!",
@@ -132,10 +153,14 @@
   "${ModID}:MakeImpulsive": {
     "NAME": "Creature of Impulse",
     "DESCRIPTION": "Draw a card. NL Make a card in your hand ${ModID}:Impulsive and discard it.",
-    "UPGRADE_DESCRIPTION": "Draw a card. NL Make a card in your hand ${ModID}:Impulsive and put it onto your deck."
+    "UPGRADE_DESCRIPTION": "Draw a card. NL Make a card in your hand ${ModID}:Impulsive and put it onto your deck.",
+    "EXTENDED_DESCRIPTION": [
+      "Choose a card to make Impulsive and discard",
+      "Choose a card to make Impulsive and topdeck"
+    ]
   },
   "${ModID}:MultihitLoseStrength": {
-    "NAME": "Wild Pumelling",
+    "NAME": "Wild Flailing",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Lose 1 Strength."
   },
   "${ModID}:PlayTopCardOfDeck": {

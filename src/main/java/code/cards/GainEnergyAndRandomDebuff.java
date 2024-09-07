@@ -4,8 +4,10 @@ import code.actions.RandomActionFromList;
 
 import static code.TheFoolMod.makeID;
 
+import code.util.CardArtRoller;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.cards.green.Acrobatics;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FrailPower;
@@ -36,5 +38,11 @@ public class GainEnergyAndRandomDebuff extends AbstractEasyCard
     public void upp()
     {
         upgradeMagicNumber(1);
+    }
+
+    @Override
+    public CardArtRoller.ReskinInfo reskinInfo(String ID)
+    {
+        return new CardArtRoller.ReskinInfo(Acrobatics.ID, 1f, 0.5f, 0.5f, 0.5f, true);
     }
 }

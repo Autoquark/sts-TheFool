@@ -4,6 +4,6 @@
     "NAMES": [
       "impulsive"
     ],
-    "DESCRIPTION": "Impulsive cards are automatically played when drawn, except as part of your default 5 card hand at the start of your turn."
+    "DESCRIPTION": "Impulsive cards are automatically played when drawn on your turn unless as part of your default 5 card hand at the start of your turn."
   }
 ]

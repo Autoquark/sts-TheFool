@@ -16,7 +16,7 @@ public class QuestionableTactics extends AbstractEasyCard
 
     public QuestionableTactics()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 12;
         baseBlock = 12;
     }

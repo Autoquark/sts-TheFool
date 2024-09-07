@@ -2,12 +2,12 @@ package code.cards;
 
 import code.actions.CopyPowersAction;
 import code.actions.PowerTypeFilter;
-import code.cards.AbstractEasyCard;
 
 import static code.TheFoolMod.makeID;
 
+import code.util.CardArtRoller;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
-import com.megacrit.cardcrawl.actions.utility.ReApplyPowersAction;
+import com.megacrit.cardcrawl.cards.red.BloodForBlood;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -33,5 +33,11 @@ public class TransferDebuffs extends AbstractEasyCard
     public void upp()
     {
         // This space deliberately left blank
+    }
+
+    @Override
+    public CardArtRoller.ReskinInfo reskinInfo(String ID)
+    {
+        return new CardArtRoller.ReskinInfo(BloodForBlood.ID, 0.5f, 0.5f, 0.5f, 0.5f, true);
     }
 }

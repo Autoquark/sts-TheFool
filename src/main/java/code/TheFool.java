@@ -74,6 +74,8 @@ public class TheFool extends CustomPlayer
         }
 
         retVal.add(GainEnergyAndRandomDebuff.ID);
+        retVal.add(AttackCheaperPerDebuff.ID);
+        retVal.add(IncreaseCostReduceOtherCardCost.ID);
 
         return retVal;
     }
@@ -146,8 +148,7 @@ public class TheFool extends CustomPlayer
     @Override
     public AbstractCard getStartCardForEvent()
     {
-        System.out.println("YOU NEED TO SET getStartCardForEvent() in your " + getClass().getSimpleName() + " file!");
-        return null;
+        return new GainEnergyAndRandomDebuff();
     }
 
     @Override

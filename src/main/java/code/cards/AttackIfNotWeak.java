@@ -2,6 +2,8 @@ package code.cards;
 
 import static code.TheFoolMod.makeID;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import code.actions.ConditionalAction;
 import code.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -10,6 +12,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
+@NoPools
+@NoCompendium
 public class AttackIfNotWeak extends AbstractEasyCard
 {
     public final static String ID = makeID("AttackIfNotWeak");

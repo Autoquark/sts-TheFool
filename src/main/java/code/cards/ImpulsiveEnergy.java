@@ -18,8 +18,9 @@ public class ImpulsiveEnergy extends AbstractEasyCard
 
     public ImpulsiveEnergy()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 1;
+        exhaust = true;
 
         CardModifierManager.addModifier(this, new ImpulsiveCardModifier(true));
     }
@@ -33,6 +34,6 @@ public class ImpulsiveEnergy extends AbstractEasyCard
     @Override
     public void upp()
     {
-        upgradeMagicNumber(1);
+        exhaust = false;
     }
 }

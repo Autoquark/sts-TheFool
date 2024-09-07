@@ -17,8 +17,9 @@ public class AttackAndGainWeak extends AbstractEasyCard
 
     public AttackAndGainWeak()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseMagicNumber = magicNumber = 2;
+        baseDamage = damage = 12;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m)

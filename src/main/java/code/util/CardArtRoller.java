@@ -348,6 +348,84 @@ public class CardArtRoller {
         });
     }
 
+    public static TextureAtlas.AtlasRegion getModifiedPortrait(AbstractCard artCard, AbstractCard destCard, float h, float s, float l, float c, boolean flipX)
+    {
+        TextureAtlas.AtlasRegion textureRegion = artCard.portrait;
+        textureRegion.flip(flipX, true);
+        boolean shouldSwapColorTexture = true;
+        if (smallBuffer == null) {
+            smallBuffer = ImageHelper.createBuffer(250, 190);
+            shouldSwapColorTexture = false;
+        }
+        if (smallCamera == null) {
+            smallCamera = new OrthographicCamera(250, 190);
+        }
+        smallCamera.position.setZero();
+        if (needsMask(destCard, artCard)) {
+            if (artCard.type == AbstractCard.CardType.ATTACK) {
+                if (destCard.type == AbstractCard.CardType.POWER) {
+                    //Attack to Power
+                    smallCamera.zoom = 0.976f;
+                    smallCamera.translate(-3, 0);
+                } else {
+                    //Attack to Skill, Status, Curse
+                    smallCamera.zoom = 0.9f;
+                    smallCamera.translate(0, -10);
+                }
+            } else if (artCard.type == AbstractCard.CardType.POWER) {
+                if (destCard.type == AbstractCard.CardType.ATTACK) {
+                    //Power to Attack
+                    smallCamera.zoom = 0.9f;
+                    smallCamera.translate(0, -10);
+                } else {
+                    //Power to Skill, Status, Curse
+                    smallCamera.zoom = 0.825f;
+                    smallCamera.translate(-1, -18);
+                }
+            } else {
+                if (destCard.type == AbstractCard.CardType.POWER) {
+                    //Skill, Status, Curse to Power
+                    smallCamera.zoom = 0.976f;
+                    smallCamera.translate(-3, 0);
+                }
+                //Skill, Status, Curse to Attack is free
+            }
+            smallCamera.update();
+        }
+        SpriteBatch sb = new SpriteBatch();
+        sb.setProjectionMatrix(smallCamera.combined);
+        smallBuffer.begin();
+        if (shouldSwapColorTexture) {
+            WizArt.swapTextureAndClear(smallBuffer);
+        } else {
+            WizArt.clearCurrentBuffer();
+        }
+        sb.begin();
+
+        ReskinInfo r = new ReskinInfo(artCard.cardID, h, s, l, c, flipX);
+        Color HSLC = new Color(h, s, l, c);
+        if (!r.isBicolor) {
+            sb.setShader(shade);
+            sb.setColor(HSLC);
+        } else {
+            sb.setShader(bicolorShader);
+            sb.setColor(Color.WHITE);
+            setBicolorShaderValues(r);
+        }
+        sb.draw(textureRegion, -125, -95);
+        if (needsMask(destCard, artCard)) {
+            sb.setBlendFunction(GL_DST_COLOR, GL_ZERO);
+            Texture mask = getMask(destCard);
+            sb.setProjectionMatrix(new OrthographicCamera(250, 190).combined);
+            sb.draw(mask, -125, -95, -125, -95, 250, 190, 1, 1, 0, 0, 0, mask.getWidth(), mask.getHeight(), false, true);
+        }
+        sb.end();
+        smallBuffer.end();
+        textureRegion.flip(r.flipX, true);
+        TextureRegion a = ImageHelper.getBufferTexture(smallBuffer);
+        return new TextureAtlas.AtlasRegion(a.getTexture(), 0, 0, 250, 190);
+    }
+
     private static FrameBuffer portraitBuffer = null;
     private static OrthographicCamera portraitCamera = null;
 

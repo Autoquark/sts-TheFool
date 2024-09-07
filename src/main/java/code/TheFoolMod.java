@@ -6,6 +6,7 @@ import basemod.abstracts.DynamicVariable;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import code.actions.SetIsInStartOfTurnDrawAction;
+import code.events.InternalOnPowersModifiedSubscriber;
 import code.util.TexLoader;
 import code.util.Wiz;
 import com.badlogic.gdx.Gdx;
@@ -16,7 +17,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.localization.OrbStrings;
@@ -32,7 +36,10 @@ import code.cards.cardvars.AbstractEasyDynamicVariable;
 import code.potions.AbstractEasyPotion;
 import code.relics.AbstractEasyRelic;
 import code.util.ProAudio;
+
+import javax.smartcardio.Card;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -46,7 +53,9 @@ public class TheFoolMod implements
         OnPlayerTurnStartPostDrawSubscriber,
         OnStartBattleSubscriber,
         PostInitializeSubscriber,
-        AddAudioSubscriber {
+        AddAudioSubscriber,
+        OnPowersModifiedSubscriber
+{
 
     public static final String modID = "thefool";
 
@@ -237,5 +246,26 @@ public class TheFoolMod implements
     {
         impulsiveIcon = TexLoader.getTexture("thefoolResources/images/ui/cardmods/impulsiveIcon.png");
         impulsiveIconRegion = UIAtlas.addRegion("impulsiveIcon", impulsiveIcon, 0, 0, impulsiveIcon.getWidth(), impulsiveIcon.getHeight());
+    }
+
+    @Override
+    public void receivePowersModified()
+    {
+        /*dispatchEventsForGroup(AbstractDungeon.player.hand);
+        dispatchEventsForGroup(AbstractDungeon.player.drawPile);
+        dispatchEventsForGroup(AbstractDungeon.player.discardPile);
+        dispatchEventsForGroup(AbstractDungeon.player.exhaustPile);
+        dispatchEventsForGroup(AbstractDungeon.player.limbo);*/
+    }
+
+    private static void dispatchEventsForGroup(CardGroup cardGroup)
+    {
+        for(AbstractCard card : cardGroup.group)
+        {
+            if(card instanceof InternalOnPowersModifiedSubscriber)
+            {
+                ((InternalOnPowersModifiedSubscriber)card).receivePowersModified();
+            }
+        }
     }
 }
